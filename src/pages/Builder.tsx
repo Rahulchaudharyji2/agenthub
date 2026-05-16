@@ -515,8 +515,7 @@ export function Builder() {
   return (
     <div className="flex flex-1 h-full overflow-hidden aurora-builder relative">
       <div
-        className="w-56 h-full flex flex-col shrink-0 border-r border-white/5 overflow-y-auto"
-        style={{ background: "rgba(10,12,17,0.6)", backdropFilter: "blur(12px)" }}
+        className="w-56 h-full flex flex-col shrink-0 border-r border-white/10 dark:border-white/5 overflow-y-auto glass-panel"
       >
         <div className="p-4 border-b border-white/5">
           <div className="flex items-center gap-1.5 mb-2">
@@ -758,9 +757,7 @@ export function Builder() {
             <motion.div
               initial={{ y: 100 }}
               animate={{ y: 0 }}
-              exit={{ y: 100 }}
-              className="absolute bottom-0 left-0 right-0 h-40 border-t border-white/5 z-30"
-              style={{ background: "rgba(10,12,17,0.85)", backdropFilter: "blur(20px)" }}
+              className="absolute bottom-0 left-0 right-0 h-40 border-t border-white/10 dark:border-white/5 z-30 glass-panel"
             >
               <div className="flex items-center justify-between px-4 py-2 border-b border-white/5">
                 <div className="flex items-center gap-2">
@@ -840,9 +837,7 @@ export function Builder() {
           <motion.div
             initial={{ x: 300 }}
             animate={{ x: 0 }}
-            exit={{ x: 300 }}
-            className="w-80 h-full flex flex-col shrink-0 border-l border-white/5 z-40"
-            style={{ background: "rgba(10,12,17,0.8)", backdropFilter: "blur(12px)" }}
+            className="w-80 h-full flex flex-col shrink-0 border-l border-white/10 dark:border-white/5 z-40 glass-panel"
           >
             <div className="p-4 border-b border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-2">

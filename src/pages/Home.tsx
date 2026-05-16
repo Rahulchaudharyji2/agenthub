@@ -125,13 +125,13 @@ function TopNav({ onNavigate, onSignIn }: { onNavigate: (v: View) => void; onSig
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 glass-nav"
       style={{
-        background: scrolled ? "rgba(10,12,18,0.9)" : "transparent",
+        background: scrolled ? "var(--nav-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(28px) saturate(180%)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(28px) saturate(180%)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(56,139,253,0.1)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 1px 0 rgba(56,139,253,0.05), 0 12px 40px rgba(0,0,0,0.4)" : "none",
+        borderBottom: scrolled ? "1px solid var(--nav-border)" : "1px solid transparent",
+        boxShadow: scrolled ? "var(--glass-shadow)" : "none",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-4">
@@ -250,13 +250,13 @@ function TopNav({ onNavigate, onSignIn }: { onNavigate: (v: View) => void; onSig
 
         {/* Right side */}
         <div className="flex items-center gap-2 ml-auto shrink-0">
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] cursor-text" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(48,54,61,0.8)", color: "rgba(110,118,129,0.75)", minWidth: 190 }}>
-            <Search className="w-3.5 h-3.5 shrink-0" />
-            <span className="flex-1">Search or jump to...</span>
-            <kbd className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "rgba(48,54,61,0.7)", color: "rgba(110,118,129,0.7)", border: "1px solid rgba(48,54,61,0.9)" }}>/</kbd>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] cursor-text glass-panel">
+            <Search className="w-3.5 h-3.5 shrink-0 text-slate-500" />
+            <span className="flex-1 text-slate-500">Search archives...</span>
+            <kbd className="text-[10px] px-1.5 py-0.5 rounded opacity-60">/</kbd>
           </div>
-          <button onClick={() => onSignIn("signin")} className="px-3.5 py-1.5 rounded-md text-[13px] font-medium transition-colors" style={{ color: "rgba(230,237,243,0.75)" }} onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#e6edf3"; }} onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(230,237,243,0.75)"; }}>Sign in</button>
-          <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => onSignIn("signup")} className="px-4 py-1.5 rounded-md text-[13px] font-semibold text-white" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(240,246,252,0.12)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07)" }}>Sign up</motion.button>
+          <button onClick={() => onSignIn("signin")} className="px-3.5 py-1.5 rounded-md text-[13px] font-medium transition-colors hover:text-amber-500">Enter</button>
+          <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => onSignIn("signup")} className="px-4 py-1.5 rounded-md text-[13px] font-semibold magic-btn-primary">Enroll</motion.button>
         </div>
       </div>
     </header>
@@ -297,38 +297,34 @@ function CodeWindow({ style }: { style?: React.CSSProperties }) {
 
       {/* The actual window */}
       <div
-        className="relative overflow-hidden rounded-2xl"
-        style={{
-          background: "#161b22",
-          border: "1px solid rgba(48,54,61,0.9)",
-        }}
+        className="relative overflow-hidden rounded-2xl glass-panel animate-float-organic"
       >
         {/* Title bar */}
-        <div className="flex items-center px-5 py-4" style={{ background: "rgba(22,27,34,1)", borderBottom: "1px solid rgba(48,54,61,0.8)" }}>
+        <div className="flex items-center px-5 py-4 border-b border-white/10 dark:border-white/5 bg-white/20 dark:bg-black/20">
           <div className="flex items-center gap-2">
-            <div className="w-3.5 h-3.5 rounded-full" style={{ background: "#ff5f57", boxShadow: "0 0 8px rgba(255,95,87,0.7)" }} />
-            <div className="w-3.5 h-3.5 rounded-full" style={{ background: "#ffbd2e", boxShadow: "0 0 8px rgba(255,189,46,0.6)" }} />
-            <div className="w-3.5 h-3.5 rounded-full" style={{ background: "#28c840", boxShadow: "0 0 8px rgba(40,200,64,0.6)" }} />
+            <div className="w-3.5 h-3.5 rounded-full bg-red-400 opacity-80" />
+            <div className="w-3.5 h-3.5 rounded-full bg-amber-400 opacity-80" />
+            <div className="w-3.5 h-3.5 rounded-full bg-emerald-400 opacity-80" />
           </div>
           <div className="flex-1 flex justify-center">
-            <div className="px-5 py-1 rounded-md text-[12px] font-medium" style={{ background: "rgba(48,54,61,0.7)", color: "rgba(230,237,243,0.5)", border: "1px solid rgba(48,54,61,0.9)", minWidth: 220, textAlign: "center" }}>
-              agenthub-quickstart.ts
+            <div className="px-5 py-1 rounded-md text-[12px] font-medium bg-black/5 dark:bg-white/5 opacity-80">
+              agenthub_grimoire.incantation
             </div>
           </div>
           <div className="flex gap-2.5 opacity-30">
-            <Minus className="w-3.5 h-3.5 text-white" />
-            <X className="w-3.5 h-3.5 text-white" />
+            <Minus className="w-3.5 h-3.5" />
+            <X className="w-3.5 h-3.5" />
           </div>
         </div>
 
         {/* File tabs */}
-        <div className="flex" style={{ background: "#0d1117", borderBottom: "1px solid rgba(48,54,61,0.6)" }}>
+        <div className="flex border-b border-white/10 dark:border-white/5 bg-white/10 dark:bg-black/10">
           {[
-            { label: "apothecary-summon.ts", type: "TS",   tc: "#79c0ff", active: true  },
-            { label: "agent.config.json",       type: "JSON", tc: "#e3b341", active: false },
-            { label: "results.log",              type: "LOG",  tc: "#34d399", active: false },
+            { label: "summon_ritual.rune", type: "RUNE",   tc: "#a78bfa", active: true  },
+            { label: "spell_parameters.ink",       type: "INK", tc: "#f59e0b", active: false },
+            { label: "divination.scroll",              type: "SCROLL",  tc: "#34d399", active: false },
           ].map((tab) => (
-            <div key={tab.label} className="flex items-center gap-1.5 px-5 py-2.5 text-[12px] font-medium select-none" style={{ color: tab.active ? "rgba(230,237,243,0.95)" : "rgba(110,118,129,0.7)", borderBottom: tab.active ? "2px solid #388bfd" : "2px solid transparent", background: tab.active ? "rgba(22,27,34,0.6)" : "transparent" }}>
+            <div key={tab.label} className="flex items-center gap-1.5 px-5 py-2.5 text-[12px] font-medium select-none" style={{ color: tab.active ? "inherit" : "var(--text-muted)", borderBottom: tab.active ? "2px solid var(--accent-gold)" : "2px solid transparent", background: tab.active ? "rgba(255,255,255,0.05)" : "transparent" }}>
               <span className="text-[10px] font-black" style={{ color: tab.tc }}>{tab.type}</span>
               {tab.label}
             </div>
@@ -336,28 +332,28 @@ function CodeWindow({ style }: { style?: React.CSSProperties }) {
         </div>
 
         {/* Code area */}
-        <div className="px-6 py-5 font-mono text-[13px] leading-[1.9] relative overflow-hidden" style={{ background: "#0d1117", minHeight: 290 }}>
-          {/* Scanline */}
-          <div className="absolute left-0 right-0 h-10 pointer-events-none animate-scanline" style={{ background: "linear-gradient(transparent,rgba(56,139,253,0.06),transparent)", opacity: 0.6 }} />
+        <div className="px-6 py-5 font-mono text-[13px] leading-[1.9] relative overflow-hidden bg-black/5 dark:bg-black/40 min-h-[290px]">
+          {/* Subtle magic shimmer */}
+          <div className="absolute left-0 right-0 h-10 pointer-events-none animate-breathe" style={{ background: "linear-gradient(transparent,var(--accent-glow),transparent)", opacity: 0.3 }} />
           {CODE_LINES.map((line, li) => (
             <motion.div key={line.n} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 + li * 0.065, duration: 0.22 }} className="flex">
-              <span className="select-none w-8 shrink-0 text-right mr-6 font-mono text-[12px]" style={{ color: "rgba(110,118,129,0.38)" }}>{line.n}</span>
+              <span className="select-none w-8 shrink-0 text-right mr-6 font-mono text-[12px] opacity-40">{line.n}</span>
               <span>{line.tokens.map((tok, ti) => <span key={ti} style={{ color: tok.c }}>{tok.t}</span>)}</span>
             </motion.div>
           ))}
           {/* Cursor */}
-          <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.55, repeat: Infinity, repeatType: "reverse" }} className="inline-block align-middle ml-0.5" style={{ width: 2, height: 16, background: "#79c0ff", borderRadius: 1 }} />
+          <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.55, repeat: Infinity, repeatType: "reverse" }} className="inline-block align-middle ml-0.5" style={{ width: 2, height: 16, background: "var(--accent-gold)", borderRadius: 1 }} />
         </div>
 
         {/* Status bar */}
-        <div className="flex items-center justify-between px-5 py-2 text-[11px] font-medium" style={{ background: "rgba(31,111,235,0.72)", borderTop: "1px solid rgba(56,139,253,0.3)", color: "rgba(255,255,255,0.9)" }}>
+        <div className="flex items-center justify-between px-5 py-2 text-[11px] font-medium" style={{ background: "var(--glass-hover)", borderTop: "1px solid var(--glass-border)" }}>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5"><Zap className="w-3 h-3" /> AgentHub Dev</span>
-            <span>TypeScript</span>
+            <span className="flex items-center gap-1.5"><Zap className="w-3 h-3 text-amber-500" /> AgentHub Guild</span>
+            <span>Runic Script</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />Agent Ready</span>
-            <span>UTF-8</span>
+            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />Familiar Conjured</span>
+            <span>Ancient Runes</span>
           </div>
         </div>
       </div>
@@ -384,17 +380,13 @@ function StatCard({ stat, enabled, index }: { stat: StatConfig; enabled: boolean
       initial={{ opacity: 0, y: 24 }}
       animate={enabled ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-      className="relative flex flex-col items-center py-12 px-6 overflow-hidden group"
-      style={{ background: "#0d1117" }}
+      className="relative flex flex-col items-center py-12 px-6 overflow-hidden group glass-panel"
     >
-      {/* Subtle hover glow */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 100%,rgba(56,139,253,0.07),transparent)" }} />
-
-      <Icon className="w-6 h-6 mb-5 relative z-10" style={{ color: "#388bfd", filter: "drop-shadow(0 0 10px rgba(56,139,253,0.7))" }} />
-      <p className="font-display font-black mb-2 tabular-nums relative z-10" style={{ fontSize: "clamp(2rem,4vw,2.8rem)", color: "#e6edf3", letterSpacing: "-0.025em", lineHeight: 1 }}>
+      <Icon className="w-6 h-6 mb-5 relative z-10" style={{ color: "var(--accent-gold)", filter: "drop-shadow(0 0 10px var(--accent-glow))" }} />
+      <p className="font-display font-black mb-2 tabular-nums relative z-10" style={{ fontSize: "clamp(2rem,4vw,2.8rem)", letterSpacing: "-0.025em", lineHeight: 1 }}>
         {display}
       </p>
-      <p className="text-[13px] font-medium relative z-10" style={{ color: "#6e7681" }}>{stat.label}</p>
+      <p className="text-[13px] font-medium relative z-10 opacity-70">{stat.label}</p>
     </motion.div>
   );
 }
@@ -403,8 +395,8 @@ function StatsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
   return (
-    <section ref={ref} style={{ background: "#0d1117", borderTop: "1px solid rgba(48,54,61,0.7)", borderBottom: "1px solid rgba(48,54,61,0.7)" }}>
-      <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0" style={{ borderColor: "rgba(48,54,61,0.55)" }}>
+    <section ref={ref} className="border-t border-b border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/20">
+      <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 border-black/10 dark:border-white/10">
         {STATS.map((stat, i) => <StatCard key={stat.label} stat={stat} enabled={inView} index={i} />)}
       </div>
     </section>
@@ -527,7 +519,7 @@ export function Home({ onNavigate, onSignIn }: HomeProps) {
       id="landing-scroll"
       ref={scrollContainerRef}
       className="flex-1 overflow-y-auto overflow-x-hidden"
-      style={{ background: "#0a0c12", position: "relative" }}
+      style={{ position: "relative" }}
     >
       <TopNav onNavigate={onNavigate} onSignIn={onSignIn} />
 
@@ -538,19 +530,19 @@ export function Home({ onNavigate, onSignIn }: HomeProps) {
         style={{
           minHeight: "200vh",
           background:
-            "radial-gradient(ellipse 130% 60% at 50% -5%,rgba(88,70,164,0.62) 0%,transparent 58%)," +
-            "radial-gradient(ellipse 75% 45% at 82% 10%,rgba(56,139,253,0.2) 0%,transparent 48%)," +
-            "radial-gradient(ellipse 55% 38% at 18% 22%,rgba(124,58,237,0.15) 0%,transparent 48%)," +
-            "#0a0c12",
+            "radial-gradient(ellipse 130% 60% at 50% -5%,var(--accent-glow) 0%,transparent 58%)," +
+            "radial-gradient(ellipse 75% 45% at 82% 10%,rgba(167,139,250,0.15) 0%,transparent 48%)," +
+            "radial-gradient(ellipse 55% 38% at 18% 22%,var(--accent-glow) 0%,transparent 48%)," +
+            "var(--bg-primary)",
         }}
       >
         {/* Grid */}
         <div className="absolute inset-0 grid-bg opacity-35 pointer-events-none" />
         {/* Aurora orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="aurora-orb animate-drift"      style={{ width: 1100, height: 900, top: "-35%", left: "50%", transform: "translateX(-50%)", background: "radial-gradient(circle,rgba(88,70,164,0.44) 0%,transparent 65%)" }} />
-          <div className="aurora-orb animate-drift-slow" style={{ width: 600,  height: 600, bottom: "20%", right: "-8%", background: "radial-gradient(circle,rgba(56,139,253,0.2) 0%,transparent 65%)" }} />
-          <div className="aurora-orb animate-drift"      style={{ width: 500,  height: 500, bottom: "20%", left:  "-8%", background: "radial-gradient(circle,rgba(124,58,237,0.14) 0%,transparent 65%)", animationDelay: "10s" }} />
+          <div className="aurora-orb animate-drift"      style={{ width: 1100, height: 900, top: "-35%", left: "50%", transform: "translateX(-50%)", background: "radial-gradient(circle,var(--accent-glow) 0%,transparent 65%)" }} />
+          <div className="aurora-orb animate-drift-slow" style={{ width: 600,  height: 600, bottom: "20%", right: "-8%", background: "radial-gradient(circle,rgba(167,139,250,0.15) 0%,transparent 65%)" }} />
+          <div className="aurora-orb animate-drift"      style={{ width: 500,  height: 500, bottom: "20%", left:  "-8%", background: "radial-gradient(circle,var(--accent-glow) 0%,transparent 65%)", animationDelay: "10s" }} />
         </div>
 
         {/* ── Sticky text block ── */}
@@ -558,28 +550,26 @@ export function Home({ onNavigate, onSignIn }: HomeProps) {
           <motion.div style={{ y: textY, opacity: textOpacity, scale: textScale }} className="text-center max-w-4xl mx-auto pointer-events-auto">
             {/* Badge */}
             <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 mb-10 px-4 py-2 rounded-full text-[12px] font-semibold"
-              style={{ background: "rgba(56,139,253,0.08)", border: "1px solid rgba(56,139,253,0.3)", color: "#79c0ff", backdropFilter: "blur(12px)", boxShadow: "0 0 32px rgba(56,139,253,0.14),inset 0 1px 0 rgba(255,255,255,0.07)" }}
+              className="inline-flex items-center gap-2 mb-10 px-4 py-2 rounded-full text-[12px] font-semibold glass-panel text-amber-500"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              Now in Beta — Join 98,000+ users
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              The Guild is Open — Join 98,000+ Wizards
               <ChevronRight className="w-3.5 h-3.5 opacity-50" />
             </motion.div>
 
             {/* Headline */}
             <motion.h1 initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
               className="font-display font-extrabold tracking-tight mb-8"
-              style={{ fontSize: "clamp(3rem,6.8vw,5.2rem)", lineHeight: 1.04, letterSpacing: "-0.03em" }}
+              style={{ fontSize: "clamp(3.5rem,7vw,5.5rem)", lineHeight: 1.04, letterSpacing: "-0.03em" }}
             >
-              <span style={{ color: "#e6edf3" }}>Modern spellcraft for</span><br />
-              <span style={{ background: "linear-gradient(180deg,#e6edf3 0%,#b3d4f5 40%,#58a6ff 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ color: "var(--text-primary)" }}>Modern spellcraft for</span><br />
+              <span className="gradient-text-magic">
                 the automated wizard
               </span>
             </motion.h1>
 
-            {/* Sub */}
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25, ease: [0.23, 1, 0.32, 1] }}
-              className="text-[17px] leading-relaxed mb-12 max-w-2xl mx-auto" style={{ color: "rgba(139,148,158,0.9)" }}
+              className="text-[17px] leading-relaxed mb-12 max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}
             >
               Summon specialized familiars to handle your tasks end-to-end — from vault audits to Ministry law review. Weave your own enchantments and earn Galleons passively.
             </motion.p>
@@ -588,27 +578,26 @@ export function Home({ onNavigate, onSignIn }: HomeProps) {
             <motion.form onSubmit={handleSubmit} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-stretch gap-2 max-w-xl mx-auto mb-5"
             >
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email"
-                className="flex-1 px-4 py-3.5 rounded-lg text-[14px] outline-none text-white/90"
-                style={{ background: "rgba(13,17,23,0.88)", border: "1px solid rgba(48,54,61,0.95)", backdropFilter: "blur(12px)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
-                onFocus={(e) => { e.target.style.borderColor = "rgba(56,139,253,0.7)"; e.target.style.boxShadow = "0 0 0 3px rgba(56,139,253,0.13),inset 0 1px 0 rgba(255,255,255,0.04)"; }}
-                onBlur={(e)  => { e.target.style.borderColor = "rgba(48,54,61,0.95)";  e.target.style.boxShadow = "inset 0 1px 0 rgba(255,255,255,0.04)"; }}
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Send an owl (email)"
+                className="flex-1 px-4 py-3.5 rounded-lg text-[14px] outline-none text-slate-800 dark:text-white glass-panel"
+                onFocus={(e) => { e.target.style.borderColor = "var(--accent-gold)"; e.target.style.boxShadow = "0 0 0 3px var(--accent-glow)"; }}
+                onBlur={(e)  => { e.target.style.borderColor = "var(--glass-border)";  e.target.style.boxShadow = "var(--glass-shadow)"; }}
               />
-              <motion.button type="submit" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="btn-primary-gh px-6 py-3.5 rounded-lg text-[14px] font-semibold text-white whitespace-nowrap">
+              <motion.button type="submit" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="magic-btn-primary px-6 py-3.5 rounded-lg text-[14px] font-semibold whitespace-nowrap">
                 <AnimatePresence mode="wait">
                   {submitted
-                    ? <motion.span key="d" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4" />You're in!</motion.span>
-                    : <motion.span key="c" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>Sign up for AgentHub</motion.span>}
+                    ? <motion.span key="d" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4" />Owl Dispatched!</motion.span>
+                    : <motion.span key="c" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>Enroll in the Guild</motion.span>}
                 </AnimatePresence>
               </motion.button>
             </motion.form>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }} className="flex items-center justify-center gap-3">
-              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => onNavigate("marketplace")} className="btn-secondary-gh flex items-center gap-2 px-6 py-3 rounded-lg text-[14px] font-semibold" style={{ color: "rgba(230,237,243,0.85)" }}>
-                <Store className="w-4 h-4" /> Browse Agents
+              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => onNavigate("marketplace")} className="magic-btn-secondary flex items-center gap-2 px-6 py-3 rounded-lg text-[14px] font-semibold">
+                <Store className="w-4 h-4 text-amber-500" /> Browse The Apothecary
               </motion.button>
-              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => onNavigate("builder")} className="btn-secondary-gh flex items-center gap-2 px-6 py-3 rounded-lg text-[14px] font-semibold" style={{ color: "rgba(230,237,243,0.85)" }}>
-                <Play className="w-4 h-4" /> Try the Builder
+              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => onNavigate("builder")} className="magic-btn-secondary flex items-center gap-2 px-6 py-3 rounded-lg text-[14px] font-semibold">
+                <Play className="w-4 h-4 text-amber-500" /> Open the Spellcrafter
               </motion.button>
             </motion.div>
           </motion.div>
@@ -637,15 +626,16 @@ export function Home({ onNavigate, onSignIn }: HomeProps) {
       <StatsSection />
 
       {/* ═══════════ HOW IT WORKS ═══════════ */}
-      <section className="px-8 py-28" style={{ background: "#0a0c12" }}>
-        <div className="max-w-5xl mx-auto">
+      <section className="px-8 py-28 relative">
+        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-20">
-            <p className="text-[11px] font-black uppercase tracking-[0.2em] mb-4" style={{ color: "#388bfd" }}>How it works</p>
-            <h2 className="font-display font-bold text-white mb-5" style={{ fontSize: "clamp(2rem,4.5vw,3.2rem)", lineHeight: 1.08, letterSpacing: "-0.022em" }}>
-              From task to result in{" "}
-              <span style={{ background: "linear-gradient(135deg,#79c0ff,#58a6ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>minutes</span>
+            <p className="text-[11px] font-black uppercase tracking-[0.2em] mb-4 text-amber-500">How it works</p>
+            <h2 className="font-display font-bold mb-5" style={{ fontSize: "clamp(2rem,4.5vw,3.2rem)", lineHeight: 1.08, letterSpacing: "-0.022em", color: "var(--text-primary)" }}>
+              From intent to result in{" "}
+              <span className="gradient-text-magic">minutes</span>
             </h2>
-            <p className="text-[15px] max-w-lg mx-auto" style={{ color: "#6e7681" }}>No complicated setup. No learning curve. Describe what you need, and the agent handles the rest.</p>
+            <p className="text-[15px] max-w-lg mx-auto" style={{ color: "var(--text-secondary)" }}>No complicated setup. No learning curve. Describe what you need, and the familiar handles the rest.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

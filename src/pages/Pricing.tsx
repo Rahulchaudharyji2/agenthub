@@ -104,15 +104,7 @@ export function Pricing({ onNavigate, onSignIn }: PricingProps) {
       {/* Grid overlay */}
       <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
       {/* Page header — frosted so aurora bleeds through */}
-      <div
-        className="sticky top-0 z-30 relative"
-        style={{
-          background: "rgba(6,8,9,0.55)",
-          backdropFilter: "blur(32px) saturate(200%)",
-          WebkitBackdropFilter: "blur(32px) saturate(200%)",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-        }}
-      >
+      <div className="sticky top-0 z-30 relative glass-nav pb-3">
         <div className="max-w-screen-xl mx-auto px-6 py-3">
           <div className="flex items-center gap-2">
             <span className="text-xs font-medium" style={{ color: "rgba(230,237,243,0.35)" }}>AgentHub</span>
@@ -124,22 +116,16 @@ export function Pricing({ onNavigate, onSignIn }: PricingProps) {
         {/* ── Vault Tariffs Hero ── */}
         <div className="text-center mb-14 max-w-2xl mx-auto pt-8">
           <div className="flex items-center justify-center gap-2.5 mb-6">
-            <span className="w-2 h-2 rounded-full" style={{ background: "#a78bfa", boxShadow: "0 0 10px rgba(167,139,250,0.8)" }} />
-            <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: "rgba(167,139,250,0.65)" }}>Gringotts Tariffs</span>
+            <span className="w-2 h-2 rounded-full" style={{ background: "var(--accent-magic)", boxShadow: "0 0 10px var(--accent-glow)" }} />
+            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-purple-500">Gringotts Tariffs</span>
           </div>
-          <h1 className="font-display text-5xl font-black text-white tracking-tight leading-[1.05] mb-5 text-emerge">
+          <h1 className="font-display text-5xl font-black tracking-tight leading-[1.05] mb-5 animate-emerge text-slate-900 dark:text-white">
             Pay as you conjure,{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg,#a78bfa,#818cf8)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+            <span className="gradient-text-magic">
               earn as you craft
             </span>
           </h1>
-          <p className="text-base leading-relaxed" style={{ color: "rgba(230,237,243,0.45)" }}>
+          <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
             Begin your apprenticeship free. Scale to master level. No hidden curses, no surprises.
           </p>
         </div>
@@ -154,17 +140,14 @@ export function Pricing({ onNavigate, onSignIn }: PricingProps) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
-                className="relative rounded-2xl p-6 flex flex-col"
+                className={`relative rounded-2xl p-6 flex flex-col ${plan.highlight ? "magic-btn-secondary" : "glass-panel"}`}
                 style={{
-                  background: plan.highlight
-                    ? "linear-gradient(145deg, rgba(28,38,60,0.97), rgba(18,24,45,0.97))"
-                    : "rgba(17,20,28,0.92)",
                   border: plan.highlight
                     ? `1px solid ${plan.accent}45`
-                    : "1px solid rgba(255,255,255,0.06)",
+                    : undefined,
                   boxShadow: plan.highlight
-                    ? `0 0 0 1px ${plan.accent}20, 0 0 40px 8px ${plan.accent}18, 0 20px 60px rgba(0,0,0,0.5)`
-                    : "0 2px 16px rgba(0,0,0,0.3)",
+                    ? `0 0 0 1px ${plan.accent}20, 0 0 40px 8px ${plan.accent}18, var(--glass-shadow)`
+                    : undefined,
                 }}
               >
                 {plan.highlight && (
@@ -253,11 +236,7 @@ export function Pricing({ onNavigate, onSignIn }: PricingProps) {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.07 }}
-                className="rounded-xl p-4"
-                style={{
-                  background: "rgba(17,20,28,0.92)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
+                className="rounded-xl p-4 glass-panel"
               >
                 <p className="font-display text-sm font-semibold text-white mb-1.5">{item.q}</p>
                 <p className="text-xs leading-relaxed" style={{ color: "rgba(230,237,243,0.45)" }}>

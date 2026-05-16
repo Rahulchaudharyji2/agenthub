@@ -12,6 +12,7 @@ import { Pricing } from "@/pages/Pricing";
 import { SignInModal } from "@/components/SignInModal";
 import "@xyflow/react/dist/style.css";
 import { PageLoader } from "@/components/PageLoader"; // <-- Add this import
+import { ThemeProvider } from "next-themes";
 const queryClient = new QueryClient();
 
 export type View =
@@ -99,11 +100,13 @@ function AppContent() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AppContent />
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark">
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <AppContent />
+          <Toaster />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }

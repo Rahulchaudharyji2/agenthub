@@ -2,6 +2,7 @@ import {
   Search, SlidersHorizontal, TrendingUp, Sparkles, Flame,
   Coins, Hourglass, Scroll, Scale, Map, Feather, LineChart, Mail // New icons
 } from "lucide-react";
+import { Agent, AgentCard } from "@/components/AgentCard";
 const AGENTS: Agent[] = [
   {
     id: "1", name: "Gringotts Auditor",
@@ -84,15 +85,7 @@ export function Marketplace() {
       <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
 
       {/* Page header — frosted so aurora bleeds through */}
-      <div
-        className="sticky top-0 z-30 relative"
-        style={{
-          background: "rgba(6,8,9,0.55)",
-          backdropFilter: "blur(32px) saturate(200%)",
-          WebkitBackdropFilter: "blur(32px) saturate(200%)",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-        }}
-      >
+      <div className="sticky top-0 z-30 relative glass-nav pb-3">
         <div className="max-w-screen-xl mx-auto px-6 py-3">
           {/* Slim breadcrumb row */}
           <div className="flex items-center justify-between">
@@ -112,31 +105,18 @@ export function Marketplace() {
 
           {/* Search + filter row */}
           <div className="flex items-center gap-3 mb-3">
-            <div
-              className="flex items-center gap-2 flex-1 rounded-lg px-3 py-2"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <Search className="w-3.5 h-3.5 shrink-0" style={{ color: "rgba(110,118,129,0.6)" }} />
+            <div className="flex items-center gap-2 flex-1 rounded-lg px-3 py-2 glass-panel">
+              <Search className="w-3.5 h-3.5 shrink-0 text-slate-500" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search agents by name or description..."
-                className="flex-1 bg-transparent text-sm outline-none"
-                style={{ color: "rgba(230,237,243,0.85)", caretColor: "#388bfd" }}
+                placeholder="Search familiars by name or description..."
+                className="flex-1 bg-transparent text-sm outline-none text-slate-800 dark:text-slate-200"
+                style={{ caretColor: "var(--accent-gold)" }}
               />
             </div>
-            <button
-              className="flex items-center gap-1.5 text-sm px-3.5 py-2 rounded-lg transition-all hover:bg-white/5"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                color: "rgba(230,237,243,0.5)",
-              }}
-            >
+            <button className="flex items-center gap-1.5 text-sm px-3.5 py-2 rounded-lg transition-all hover:opacity-80 glass-panel text-slate-700 dark:text-slate-300">
               <SlidersHorizontal className="w-3.5 h-3.5" />
               Filters
             </button>
@@ -168,14 +148,14 @@ export function Marketplace() {
       {/* ── GitHub Actions-style hero ── */}
       <div className="max-w-screen-xl mx-auto px-6 pt-14 pb-10 text-center relative z-10">
         <div className="flex items-center justify-center gap-2.5 mb-5">
-          <span className="w-2 h-2 rounded-full" style={{ background: "#34d399", boxShadow: "0 0 10px rgba(52,211,153,0.8)" }} />
-          <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: "rgba(52,211,153,0.65)" }}>The Apothecary</span>
+          <span className="w-2 h-2 rounded-full" style={{ background: "var(--accent-gold)", boxShadow: "0 0 10px var(--accent-glow)" }} />
+          <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-amber-500">The Apothecary</span>
         </div>
-        <h1 className="font-display text-5xl font-black text-white tracking-tight leading-[1.05] mb-5 text-emerge">
+        <h1 className="font-display text-5xl font-black tracking-tight leading-[1.05] mb-5 animate-emerge text-slate-900 dark:text-white">
           Find the perfect enchantment<br />for any task
         </h1>
-        <p className="text-base leading-relaxed max-w-lg mx-auto" style={{ color: "rgba(230,237,243,0.45)" }}>
-          Browse 2,400+ specialized familiars and charms. Hire in seconds, pay per result in Galleons.
+        <p className="text-base leading-relaxed max-w-lg mx-auto text-slate-600 dark:text-slate-400">
+          Browse 2,400+ specialized familiars and charms. Summon in seconds, pay per result in Galleons.
         </p>
       </div>
 

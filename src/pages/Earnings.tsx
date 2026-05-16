@@ -18,15 +18,7 @@ export function Earnings() {
       {/* Grid overlay */}
       <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
       {/* Page header — frosted so aurora bleeds through */}
-      <div
-        className="sticky top-0 z-30 relative"
-        style={{
-          background: "rgba(6,8,9,0.55)",
-          backdropFilter: "blur(32px) saturate(200%)",
-          WebkitBackdropFilter: "blur(32px) saturate(200%)",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-        }}
-      >
+      <div className="sticky top-0 z-30 relative glass-nav pb-3">
         <div className="max-w-screen-xl mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -34,14 +26,7 @@ export function Earnings() {
               <span style={{ color: "rgba(255,255,255,0.15)" }}>/</span>
               <span className="text-xs font-semibold" style={{ color: "rgba(230,237,243,0.65)" }}>Earnings</span>
             </div>
-            <button
-              className="flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-lg transition-all hover:opacity-90"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                color: "rgba(230,237,243,0.6)",
-              }}
-            >
+            <button className="flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-lg transition-all hover:opacity-90 glass-panel">
               <Download className="w-3.5 h-3.5" />
               Export
             </button>
@@ -52,10 +37,10 @@ export function Earnings() {
       {/* ── Vault Hero ── */}
       <div className="max-w-screen-xl mx-auto px-6 pt-14 pb-10 text-center relative z-10">
         <div className="flex items-center justify-center gap-2.5 mb-5">
-          <span className="w-2 h-2 rounded-full" style={{ background: "#f59e0b", boxShadow: "0 0 10px rgba(245,158,11,0.8)" }} />
-          <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: "rgba(245,158,11,0.65)" }}>Gringotts Vault Ledger</span>
+          <span className="w-2 h-2 rounded-full" style={{ background: "var(--accent-gold)", boxShadow: "0 0 10px var(--accent-glow)" }} />
+          <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-amber-500">Gringotts Vault Ledger</span>
         </div>
-        <h1 className="font-display text-5xl font-black text-white tracking-tight leading-[1.05] mb-5 text-emerge">
+        <h1 className="font-display text-5xl font-black tracking-tight leading-[1.05] mb-5 animate-emerge text-slate-900 dark:text-white">
           Your vault balance,<br />crystal clear
         </h1>
         <p className="text-base leading-relaxed max-w-lg mx-auto" style={{ color: "rgba(230,237,243,0.45)" }}>
@@ -143,11 +128,7 @@ export function Earnings() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.06 }}
-                className="rounded-xl p-4"
-                style={{
-                  background: "rgba(17,20,28,0.92)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
+                className="rounded-xl p-4 glass-panel"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div
@@ -166,13 +147,7 @@ export function Earnings() {
         </div>
 
         {/* Transactions table */}
-        <div
-          className="rounded-xl overflow-hidden"
-          style={{
-            background: "rgba(17,20,28,0.92)",
-            border: "1px solid rgba(255,255,255,0.06)",
-          }}
-        >
+        <div className="rounded-xl overflow-hidden glass-panel">
           <div
             className="flex items-center justify-between px-5 py-3.5"
             style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
